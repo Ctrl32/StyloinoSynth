@@ -31,33 +31,16 @@ while True:
 
     if stylus0[0] == False:
         soundplayer.set_oscillator(0, 1)
+        note = None
         continue
     
 
+    prev_note = note
     note = stylus0[1]-12
 
-    frequency = notes.semitone_to_Hz(note, -1)
-    soundplayer.set_oscillator(0.8, frequency)
+    if note != prev_note:
+        frequency = notes.semitone_to_Hz(note, -1)
+        soundplayer.set_oscillator(0.8, frequency)
 
 
 soundplayer.stop()
-            
-
-
-
-# root = tk.Tk()
-# root.title("Styloino Studio")
-
-# menu = tk.Menu(root)
-# root.config(menu=menu)
-
-# comport_menu = tk.Menu(menu, tearoff=False)
-# comports = serial_receiver.get_comports()   
-# for port in comports:
-#     comport_menu.add_command(label=str(port))
-
-# menu.add_cascade(label="COM", menu=comport_menu)
-
-
-
-# root.mainloop()

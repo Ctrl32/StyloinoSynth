@@ -15,7 +15,7 @@ def callback(outdata, frames, time, status):
     chunk = np.zeros(frames, dtype=np.float32)
     for i in range(frames):
         time = curr_time/sample_rate
-        chunk[i] = oscillators.triangle(amplitude, frequency, time)
+        chunk[i] = oscillators.sin(amplitude, frequency, time)
         curr_time += 1
 
     chunk = chunk.reshape(-1, 1)
