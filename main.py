@@ -1,6 +1,6 @@
 import serial_IO, soundplayer, notes
 import synthesizer
-from time import time
+from time import time, sleep
 
 for port in serial_IO.get_comports():
     print(port)
@@ -12,7 +12,7 @@ soundplayer.start()
 
 #wait for the styloino to get ready
 while not serial_IO.is_ready():
-    pass
+    sleep(0.1)
 
 print("styloino: ok")
 print("output latency:", round(soundplayer.get_latency(), 2), "ms")
@@ -47,9 +47,8 @@ while True:
     synthesizer.pad_idx = pad_idx
     synthesizer.touching = stylus0[0]
 
-    print(pad_idx)
 
-    if (pad_idx!=0 and prev_pad_idx == 0 ) and change_ignore_time == 0:
+    if (pad_idx != 0 and prev_pad_idx == 0 ) and change_ignore_time == 0:
         change_ignore_time += change_ignore
 
     delta = time() - start_time
